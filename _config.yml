@@ -1,1 +1,6 @@
-"title: My Portfolio" 
+title: Callum Hawley Portfolio
+baseurl: "/callum-hawley" # Critical for GitHub Project Pages
+url: "https://chawley97.github.io"
+
+# remote_theme: minima  <-- Add a # at the start to "turn off" the default theme
+# theme: minima         <-- Add a # here too
