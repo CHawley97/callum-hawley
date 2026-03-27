@@ -5,4 +5,4 @@ permalink: /about/
 ---
 
 # About Callum
-I am a developer building my portfolio to share my journey and articles.
+I work in IT Services at the University of Sheffield, my role is heavily involved in Research IT support. I've built this website to share research IT related documentation and to further my development skills!

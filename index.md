@@ -3,9 +3,9 @@ layout: default
 title: Home
 ---
 
-# Welcome to my Portfolio
+# Welcome to my website
 
-This is my custom-built site using Jekyll.
+This is my custom-built site using Jekyll. 
 
 ## My Latest Articles
 <ul>
