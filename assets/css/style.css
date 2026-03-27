@@ -15,7 +15,6 @@
 }
 
 * {
-    /* Forces the Dongle font and adjusts sizing for readability */
     font-family: 'Dongle', sans-serif !important;
 }
 
@@ -23,7 +22,7 @@ body {
   margin: 0;
   padding: 0;
   color: white; 
-  font-size: 32px; /* Dongle runs small, so we use a larger base size */
+  font-size: 32px; 
   line-height: 1.1;
   overflow-x: hidden;
 }
@@ -36,7 +35,6 @@ body {
   max-width: 800px;
   margin: 0 auto;
   padding: 40px 20px;
-  /* Dark semi-transparent background to make text readable over the bubbles */
   background: rgba(0, 0, 0, 0.2); 
   backdrop-filter: blur(10px);
   -webkit-backdrop-filter: blur(10px);
@@ -57,18 +55,6 @@ nav a {
 a {
   color: #00d4ff !important;
   text-decoration: none;
-  transition: opacity 0.2s;
-}
-
-a:hover {
-  opacity: 0.8;
-  text-decoration: underline;
-}
-
-h1, h2, h3 {
-  color: #ffffff;
-  margin-top: 0.5em;
-  font-weight: 700;
 }
 
 /* 3. ANIMATED BACKGROUND STRUCTURE */
@@ -84,7 +70,7 @@ h1, h2, h3 {
 }
 
 .gradient-bg svg {
-  display: none; /* Hide the filter source */
+  display: none; 
 }
 
 .gradients-container {
@@ -93,7 +79,7 @@ h1, h2, h3 {
   height: 100%;
 }
 
-/* 4. INDIVIDUAL BUBBLE ANIMATIONS */
+/* 4. ANIMATIONS */
 @keyframes moveInCircle {
   0% { transform: rotate(0deg); }
   50% { transform: rotate(180deg); }
@@ -112,6 +98,7 @@ h1, h2, h3 {
   100% { transform: translateX(-50%) translateY(-10%); }
 }
 
+/* 5. INDIVIDUAL BUBBLES */
 .g1, .g2, .g3, .g4, .g5, .interactive {
   position: absolute;
   width: var(--circle-size);
@@ -119,7 +106,6 @@ h1, h2, h3 {
   top: calc(50% - var(--circle-size) / 2);
   left: calc(50% - var(--circle-size) / 2);
   mix-blend-mode: var(--blending);
-  opacity: 1;
 }
 
 .g1 {
@@ -158,14 +144,13 @@ h1, h2, h3 {
   animation: moveInCircle 20s ease infinite;
 }
 
+/* FIXED INTERACTIVE BUBBLE */
 .interactive {
   background: radial-gradient(circle at center, rgba(var(--color-interactive), 0.8) 0, rgba(var(--color-interactive), 0) 50%) no-repeat;
   width: 100%;
   height: 100%;
-  /* Center the bubble since it's no longer following the cursor */
-  top: 0;
-  left: 0;
+  top: 0; /* Centered */
+  left: 0; /* Centered */
   opacity: 0.6;
-  /* Optional: Add a slow floating animation so it's not perfectly still */
-  animation: moveHorizontal 30s ease infinite; 
+  animation: moveVertical 25s ease-in-out infinite; /* Drifts naturally instead of following mouse */
 }
