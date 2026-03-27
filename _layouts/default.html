@@ -1,31 +1,49 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{{ page.title }} | {{ site.title }}</title>
-    
     <link rel="stylesheet" href="{{ '/assets/css/style.css' | relative_url }}">
-    
     <script src="{{ '/assets/js/main.js' | relative_url }}" defer></script>
 </head>
 <body>
 
-    <header>
-        <nav>
-            <a href="{{ '/' | relative_url }}">Home</a>
-            <a href="{{ '/about/' | relative_url }}">About</a>
+    <div class="gradient-bg">
+      <svg xmlns="http://www.w3.org/2000/svg">
+        <defs>
+          <filter id="goo">
+            <feGaussianBlur in="SourceGraphic" stdDeviation="10" result="blur" />
+            <feColorMatrix in="blur" mode="matrix" values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 18 -8" result="goo" />
+            <feBlend in="SourceGraphic" in2="goo" />
+          </filter>
+        </defs>
+      </svg>
+      <div class="gradients-container">
+        <div class="g1"></div>
+        <div class="g2"></div>
+        <div class="g3"></div>
+        <div class="g4"></div>
+        <div class="g5"></div>
+        <div class="interactive"></div>
+      </div>
+    </div>
+    <div class="content-wrapper">
+        <header>
+            <nav>
+                <a href="{{ '/' | relative_url }}">Home</a>
+                <a href="{{ '/about/' | relative_url }}">About</a>
             </nav>
-    </header>
+        </header>
 
-    <main>
-        {{ content }}
-    </main>
+        <main>
+            {{ content }}
+        </main>
 
-    <footer>
-        <p>&copy; {{ site.time | date: '%Y' }} {{ site.title }}</p>
-    </footer>
+        <footer>
+            <p>&copy; {{ site.time | date: '%Y' }} {{ site.title }}</p>
+        </footer>
+    </div>
 
 </body>
 </html>
