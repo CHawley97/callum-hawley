@@ -1,4 +1,5 @@
-/* Keep your existing font settings, but add these background styles */
+/* 1. IMPORT FONT & SETUP */
+@import url('https://fonts.googleapis.com/css2?family=Dongle:wght@300;400;700&display=swap');
 
 :root {
   --color-bg1: rgb(108, 0, 162);
@@ -13,45 +14,155 @@
   --blending: hard-light;
 }
 
-/* Ensure content stays above background */
+* {
+    /* Forces the Dongle font and adjusts sizing for readability */
+    font-family: 'Dongle', sans-serif !important;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  color: white; 
+  font-size: 32px; /* Dongle runs small, so we use a larger base size */
+  line-height: 1.1;
+  overflow-x: hidden;
+}
+
+/* 2. CONTENT LAYER (GLASS EFFECT) */
 .content-wrapper {
   position: relative;
   z-index: 10;
-  /* Add a slight backdrop blur to make text pop */
-  background: rgba(255, 255, 255, 0.05);
-  backdrop-filter: blur(5px);
   min-height: 100vh;
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 40px 20px;
+  /* Dark semi-transparent background to make text readable over the bubbles */
+  background: rgba(0, 0, 0, 0.2); 
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
 }
 
+header {
+  border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+  margin-bottom: 30px;
+  padding-bottom: 10px;
+}
+
+nav a {
+  margin-right: 20px;
+  font-weight: 700;
+  font-size: 36px;
+}
+
+a {
+  color: #00d4ff !important;
+  text-decoration: none;
+  transition: opacity 0.2s;
+}
+
+a:hover {
+  opacity: 0.8;
+  text-decoration: underline;
+}
+
+h1, h2, h3 {
+  color: #ffffff;
+  margin-top: 0.5em;
+  font-weight: 700;
+}
+
+/* 3. ANIMATED BACKGROUND STRUCTURE */
 .gradient-bg {
   width: 100vw;
   height: 100vh;
-  position: fixed; /* Changed to fixed so it stays while scrolling */
+  position: fixed;
   overflow: hidden;
   background: linear-gradient(40deg, var(--color-bg1), var(--color-bg2));
   top: 0;
   left: 0;
-  z-index: -1; /* Sits behind everything */
+  z-index: -1;
 }
 
-/* Paste the rest of your bubble animations (g1, g2, g3, etc.) here exactly as you provided them */
-/* ... (moveInCircle, moveVertical, moveHorizontal animations) ... */
+.gradient-bg svg {
+  display: none; /* Hide the filter source */
+}
+
+.gradients-container {
+  filter: url(#goo) blur(40px);
+  width: 100%;
+  height: 100%;
+}
+
+/* 4. INDIVIDUAL BUBBLE ANIMATIONS */
+@keyframes moveInCircle {
+  0% { transform: rotate(0deg); }
+  50% { transform: rotate(180deg); }
+  100% { transform: rotate(360deg); }
+}
+
+@keyframes moveVertical {
+  0% { transform: translateY(-50%); }
+  50% { transform: translateY(50%); }
+  100% { transform: translateY(-50%); }
+}
+
+@keyframes moveHorizontal {
+  0% { transform: translateX(-50%) translateY(-10%); }
+  50% { transform: translateX(50%) translateY(10%); }
+  100% { transform: translateX(-50%) translateY(-10%); }
+}
+
+.g1, .g2, .g3, .g4, .g5, .interactive {
+  position: absolute;
+  width: var(--circle-size);
+  height: var(--circle-size);
+  top: calc(50% - var(--circle-size) / 2);
+  left: calc(50% - var(--circle-size) / 2);
+  mix-blend-mode: var(--blending);
+  opacity: 1;
+}
+
+.g1 {
+  background: radial-gradient(circle at center, rgba(var(--color1), 0.8) 0, rgba(var(--color1), 0) 50%) no-repeat;
+  animation: moveVertical 30s ease infinite;
+}
+
+.g2 {
+  background: radial-gradient(circle at center, rgba(var(--color2), 0.8) 0, rgba(var(--color2), 0) 50%) no-repeat;
+  transform-origin: calc(50% - 400px);
+  animation: moveInCircle 20s reverse infinite;
+}
+
+.g3 {
+  background: radial-gradient(circle at center, rgba(var(--color3), 0.8) 0, rgba(var(--color3), 0) 50%) no-repeat;
+  top: calc(50% - var(--circle-size) / 2 + 200px);
+  left: calc(50% - var(--circle-size) / 2 - 500px);
+  transform-origin: calc(50% + 400px);
+  animation: moveInCircle 40s linear infinite;
+}
+
+.g4 {
+  background: radial-gradient(circle at center, rgba(var(--color4), 0.8) 0, rgba(var(--color4), 0) 50%) no-repeat;
+  transform-origin: calc(50% - 200px);
+  animation: moveHorizontal 40s ease infinite;
+  opacity: 0.7;
+}
+
+.g5 {
+  background: radial-gradient(circle at center, rgba(var(--color5), 0.8) 0, rgba(var(--color5), 0) 50%) no-repeat;
+  width: calc(var(--circle-size) * 2);
+  height: calc(var(--circle-size) * 2);
+  top: calc(50% - var(--circle-size));
+  left: calc(50% - var(--circle-size));
+  transform-origin: calc(50% - 800px) calc(50% + 200px);
+  animation: moveInCircle 20s ease infinite;
+}
 
 .interactive {
-  position: absolute;
   background: radial-gradient(circle at center, rgba(var(--color-interactive), 0.8) 0, rgba(var(--color-interactive), 0) 50%) no-repeat;
-  mix-blend-mode: var(--blending);
   width: 100%;
   height: 100%;
   top: -50%;
   left: -50%;
   opacity: 0.7;
-}
-
-body {
-  font-family: 'Dongle', sans-serif;
-  font-size: 24px; /* Dongle needs to be bigger than standard fonts */
-  margin: 0;
-  padding: 0;
-  color: white; /* White usually looks better on that purple/blue bubble background */
 }
